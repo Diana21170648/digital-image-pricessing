@@ -1,0 +1,24 @@
+P=imread('测试图像1.tiff');
+i=double(i)
+j=fft2(i);                       
+k=fftshift(j);                 
+l=log(abs(k));                  
+m=fftshift(j);                 
+RR=real(m);                      
+II=imag(m);                        
+A=sqrt(RR.^2+II.^2);                 
+A=(A-min(min(A)))/(max(max(A)))*255; 
+b=circshift(P,[800 450]);  
+b=double(b)
+c=fft2(b);                        
+e=fftshift(c);                  
+l=log(abs(e));                 
+f=fftshift(c);                    
+WW=real(f);                      
+ZZ=imag(f);                        
+B=sqrt(WW.^2+ZZ.^2);                
+B=(B-min(min(B)))/(max(max(B)))*255; 
+subplot(2,2,1);imshow(P);title('原始图像')
+subplot(2,2,2);imshow(uint8(b));;title('平移后的图像')
+subplot(2,2,3);imshow(A);title('原始图像傅里叶频谱图');
+subplot(2,2,4);imshow(B);title('平移后的图像傅里叶频谱图') 
